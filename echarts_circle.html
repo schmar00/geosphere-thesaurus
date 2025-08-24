@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>D3 test</title>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/ws.js"></script>
+    <script src="js/d3_data.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/echarts_circle.js"></script>
+
+    <style>
+        body {
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        .title {
+            font-size: 18px;
+        }
+
+        .shadow {
+            -webkit-filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .3));
+            filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .3));
+            /* Similar syntax to box-shadow */
+        }
+    </style>
+
+</head>
+<body>
+    <h3 id="stackContent"></h3>
+    <div id="echartsCircle" style="width:1000px; height:1000px;">
+
+    </div>
+
+    <script>
+
+
+
+        d3data.init(function (rawData) {
+            eCharts_circleChart(rawData, 'echartsCircle');
+        }, 4, false);
+
+    </script>
+
+</body>
+</html>
