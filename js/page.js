@@ -1,4 +1,43 @@
-﻿// page building&handling
+﻿const gbaURI = {
+    struct: '-10-11-12-13-14-15-16-17-18-19-2-20-21-22-23-24-25-26-27-28-29-3-30-31-32-33-338-34-340-343-345-346-348-349-35-350-352-359-36-361-366-367-37-370-371-373-375-376-377-378-38-385-386-387-388-389-39-390-391-392-393-394-395-396-397-398-399-4-40-400-401-402-405-406-407-408-41-412-413-414-415-417-42-420-421-422-425-429-43-430-431-436-437-438-439-44-440-441-442-443-444-445-446-447-448-449-45-450-451-452-453-454-455-456-457-458-46-47-48-49-5-50-51-52-53-54-55-56-57-6-60-67-7-8-9-',
+    geomorph: '-116-117-118-264-288-290-292-295-296-297-298-299-300-301-302-304-305-306-307-308-309-310-311-312-313-314-315-316-317-318-319-320-321-322-323-324-325-326-327-328-329-330-331-346-347-348-349-350-351-352-353-363-365-366-367-375-377-969-970-971-972-973-974-975-976-977-978-979-980-981-982-983-',
+    faultc: '-208-30-65-66-28-352-63-62-64-67-',
+    tectc: '-17-3-5-14-15-344-4-337-338-339-13-341-8-11-12-16-9-6-10-340-7-336-',
+    geolunitc: '-197-202-204-208-206-200-210-199-205-209-203-201-211-'
+};
+
+function rewriteOldURI(uri) {
+    if (/^-?\d+$/.test(uri.split('/')[5]) ) {
+        let thesNumStr = '-' + uri.split('/')[5] + '-';
+        switch (uri.split('/')[4]) {
+            case 'geolunit':
+                if (gbaURI.geomorph.indexOf(thesNumStr) > -1) {
+                    uri = uri.replace('geolunit', 'geomorph');   
+                } else if (gbaURI.geolunitc.indexOf(thesNumStr) > -1) {
+                    uri = uri.replace('geolunit', 'geolunit-c');   
+                } 
+                break;
+            case 'fault':
+                if (gbaURI.struct.indexOf(thesNumStr) > -1) {
+                    uri = uri.replace('fault', 'struct');   
+                } else if (gbaURI.faultc.indexOf(thesNumStr) > -1) {
+                    uri = uri.replace('fault', 'fault-c');   
+                } 
+                break;
+            case 'tect':
+                if (gbaURI.tectc.indexOf(thesNumStr) > -1) {
+                    uri = uri.replace('tect', 'tect-c');   
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    console.log('rewriteOldURI', uri);
+    return uri;
+}   
+
+// page building&handling
 "use strict";
 var page = {
     BASE: location.protocol + '//' + location.host + location.pathname,
@@ -49,11 +88,8 @@ var page = {
                 this.insertProjCards(); //quick access cards, plus extended project comments from sparql
             } else if (urlParams.has('uri')) {
                 let uri = config.checkUri(decodeURI(urlParams.get('uri').replace(/["';><]/gi, ''))); //avoid injection
+                uri = rewriteOldURI(uri);
                 this.uriParameter = uri;
-                console.log('URI: ' + uri);
-                //here insert URI rewrite geolba.ac.at to geosphere.at
-                //-c schema concepts ('3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','28','30','62','63','64','65','66','67','197','199','200','201','202','203','204','205','206','208','208','209','210','211','336','337','338','339','340','341','344','352')
-
                 $('#pageContent').empty();
                 let projectId = ws.getProject(uri);
                 let item = config.projectConfiguration[projectId];

@@ -67,7 +67,15 @@ var config = {
 
     uriReplacements: {
         'GeologicUnit': 'thes/geolunit',
-        'resource.geolba.ac.at': 'resource.geosphere.at'
+        'structure': 'thes/fault',
+        'GeologicTimeScale': 'thes/time',
+        'minres': 'thes/geolunit',
+        'minres': 'thes/minres',
+        'mineral': 'thes/mineral',
+        'tectonicunit': 'thes/tect',
+        'lithology': 'thes/geolunit',
+        'ref': 'thes/citation',
+        'http://resource.geolba.ac.at': 'https://resource.geosphere.at'
     },
 
     init: function (readMetadata, langID) {
