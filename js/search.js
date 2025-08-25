@@ -281,7 +281,7 @@ var search = {
         return result
     },
     insertSearch: function (searchText) {
-        var gbaStatusStyle = ['bold', 'success', 'danger', 'primary'];
+        var geosphereStatusStyle = ['bold', 'success', 'danger', 'primary'];
         var pageContent = $('#pageContent');
         pageContent.empty().append('<br><h3 id="title">' + lang.TITLE_SEARCHRESULTS + '</h3><p id="hits" class="lead">' + lang.HITS_SEARCHRESULTS +
             '\"' + searchText + '\"</p><hr><ul id="searchresults" class="searchresults"></ul>');
@@ -296,8 +296,8 @@ var search = {
                                         BIND(CONCAT(STR(?p),"|",STR(?L)) AS ?label) . FILTER(regex(?L,?n,"i")) 
                                         ?s skos:prefLabel ?pL . FILTER((lang(?pL)="${lang.ID}")) 
                                         BIND(IF(?p=skos:prefLabel,1,2) AS ?so) 
-                                        OPTIONAL {?s <http://resource.geolba.ac.at/schema/thes#status> ?st}
-                                        BIND (IF(exists{?s <http://resource.geolba.ac.at/schema/thes#status> ?st} , ?st, 0) AS ?stat)
+                                        OPTIONAL {?s <https://resource.geosphere.at/schema/thes#status> ?st}
+                                        BIND (IF(exists{?s <https://resource.geosphere.at/schema/thes#status> ?st} , ?st, 0) AS ?stat)
                                         } 
                                         GROUP BY ?s 
                                         ORDER BY ?sort 
@@ -319,7 +319,7 @@ var search = {
                                                 </a>
                                                 <br>
                                                 <span class="searchPropTyp">URI: </span>
-                                                <span class="searchResultURI text-${gbaStatusStyle[Number(a.Status.value)]}">
+                                                <span class="searchResultURI text-${geosphereStatusStyle[Number(a.Status.value)]}">
                                                     ${a.s.value}
                                                 </span>
                                                 <br>

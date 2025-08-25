@@ -33,7 +33,7 @@ function rewriteOldURI(uri) {
                 break;
         }
     }
-    console.log('rewriteOldURI', uri);
+    //console.log('rewriteOldURI', uri);
     return uri;
 }   
 

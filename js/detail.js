@@ -5,7 +5,7 @@ const BaseUri = {
     dcterms: 'http://purl.org/dc/terms/',
     foaf: 'http://xmlns.com/foaf/0.1/',
     geo: 'http://www.w3.org/2003/01/geo/wgs84_pos#',
-    gba: 'http://resource.geolba.ac.at/schema/thes#',
+    geosphere: 'https://resource.geosphere.at/schema/thes#',
     owl: 'http://www.w3.org/2002/07/owl#',
     rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
     dbpo: 'http://dbpedia.org/ontology/',
@@ -17,7 +17,7 @@ const Uri = {
     PICTURE: [BaseUri.foaf + 'depiction'],
     SYNONYMS: [BaseUri.skos + 'altLabel'],
     NOTATION: [BaseUri.skos + 'notation'],
-    GBA_STATUS: [BaseUri.gba + 'status'],
+    GEOSPHERE_STATUS: [BaseUri.geosphere + 'status'],
     GBA_DATAVIEWER: [BaseUri.gba + 'mapViewer'],
     DESCRIPTION_1: [BaseUri.skos + 'definition'],
     DESCRIPTION_2: [BaseUri.skos + 'scopeNote', BaseUri.dcterms + 'description', BaseUri.dcterms + 'abstract'],
@@ -48,6 +48,7 @@ var detail = {
         let projectId = ws.getProject(uri);
         ws.json(projectId, query, "s", function (data) {
             if (data.results.bindings.length > 1) {
+                console.log(data);
                 data.results.bindings = data.results.bindings.sort(detail.sortFunction);
                 var F = page.isEmbedded ? detail.FRONT_LIST_EMBEDDED : detail.FRONT_LIST;
                 let res = {};
@@ -112,6 +113,7 @@ var detail = {
         let html = `<form id="irdfForm" target="_blank" style="display:none;" method="post" action="${ws.endpoint}${uri.split("/")[3]}"><input type="hidden" name="query" id="irdfQuery"/></form>`;
         props.forEach((i) => {
             let ul = this.getObj(data, i);
+            //console.log(ul);
             if (ul.size > 0) {
                 switch (key) {
                     case 'prefLabel':
@@ -150,13 +152,13 @@ var detail = {
                         div.append('<hr><span>Notation: </span>');
                         html += '<ul class="' + key + '"><li>' + Array.from(ul).join('</li><li>') + '</li></ul>';
                         break;
-                    case 'gbaStatus':
-                        div.append('<br><span>GBA Status: </span>');
+                    case 'geosphereStatus':
+                        div.append('<br><span>GeoSphere Status: </span>');
                         let status = Number(Array.from(ul)[0].slice(0, 1));
-                        let gbaStatusStyle = ['', 'success', 'danger', 'primary'];
-                        let gbaStatusText = ['', 'official use', 'informal use', 'obsolete'];
-                        html += '<span class="badge badge-' + gbaStatusStyle[status] + '"> ' + gbaStatusText[status] + ' </span>';
-                        $('#uri').attr('class', 'text-' + gbaStatusStyle[status]);
+                        let geosphereStatusStyle = ['', 'success', 'danger', 'primary'];
+                        let geosphereStatusText = ['', 'official use', 'informal use', 'obsolete'];
+                        html += '<span class="badge badge-' + geosphereStatusStyle[status] + '"> ' + geosphereStatusText[status] + ' </span>';
+                        $('#uri').attr('class', 'text-' + geosphereStatusStyle[status]);
                         break;
                     case 'abstract':
                         html += '<hr><div class="' + key + '">' + this.setUserLang(Array.from(ul).join('|').replace(/  <span class="lang">/g, '@').replace(/<\/span>/g, '')) + '</div>';
@@ -494,7 +496,7 @@ var detail = {
         picture: Uri.PICTURE,
         altLabel: [...Uri.PREF_LABEL, ...Uri.SYNONYMS],
         notation: Uri.NOTATION,
-        gbaStatus: Uri.GBA_STATUS,
+        geosphereStatus: Uri.GEOSPHERE_STATUS,
         abstract: Uri.DESCRIPTION_1,
         citation: Uri.REF_LINKS,
         dataViewer: Uri.GBA_DATAVIEWER,
@@ -506,7 +508,7 @@ var detail = {
         picture: Uri.PICTURE,
         altLabel: [...Uri.PREF_LABEL, ...Uri.SYNONYMS],
         notation: Uri.NOTATION,
-        gbaStatus: Uri.GBA_STATUS,
+        geosphereStatus: Uri.GEOSPHERE_STATUS,
         abstract: Uri.DESCRIPTION_1,
         //dataViewer: Uri.GBA_DATAVIEWER,
         citation: Uri.REF_LINKS
