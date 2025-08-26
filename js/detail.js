@@ -152,7 +152,7 @@ var detail = {
                         html += '<ul class="' + key + '"><li>' + Array.from(ul).join('</li><li>') + '</li></ul>';
                         break;
                     case 'geosphereStatus':
-                        div.append('<br><span>GeoSphere Status: </span>');
+                        div.append('<br><span>Status: </span>');
                         let status = Number(Array.from(ul)[0].slice(0, 1));
                         let geosphereStatusStyle = ['', 'success', 'danger', 'primary'];
                         let geosphereStatusText = ['', 'official use', 'informal use', 'obsolete'];
