@@ -48,7 +48,6 @@ var detail = {
         let projectId = ws.getProject(uri);
         ws.json(projectId, query, "s", function (data) {
             if (data.results.bindings.length > 1) {
-                console.log(data);
                 data.results.bindings = data.results.bindings.sort(detail.sortFunction);
                 var F = page.isEmbedded ? detail.FRONT_LIST_EMBEDDED : detail.FRONT_LIST;
                 let res = {};
@@ -77,7 +76,7 @@ var detail = {
                     div.append('<br><br><br><br><br><br><br><br><br><br>');
                 }
                 if (["mineral", "minres", "structure", "struct"].includes(projectId)) {
-                    let dv = $("#data_viewer");
+                    /* let dv = $("#data_viewer");
                     dv.append(`
         <data-viewer class="card-body" style="height:210px;"
           concept-uris="${uri}"
@@ -89,7 +88,7 @@ var detail = {
           >
         </data-viewer>
                     `);
-                    dv.show();
+                    dv.show(); */
                 }
             } else {
                 $('#pageContent').append(`<br>no results for <br>URI: <span style="color: red;"><strong>${uri}</strong></span> <br>`);

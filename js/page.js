@@ -7,7 +7,7 @@
 };
 
 function rewriteOldURI(uri) {
-    if (/^-?\d+$/.test(uri.split('/')[5]) ) {
+    if (uri.split('/')[5] != undefined) {
         let thesNumStr = '-' + uri.split('/')[5] + '-';
         switch (uri.split('/')[4]) {
             case 'geolunit':
@@ -88,8 +88,8 @@ var page = {
                 this.insertProjCards(); //quick access cards, plus extended project comments from sparql
             } else if (urlParams.has('uri')) {
                 let uri = config.checkUri(decodeURI(urlParams.get('uri').replace(/["';><]/gi, ''))); //avoid injection
-                uri = rewriteOldURI(uri);
-                this.uriParameter = uri;
+                if (uri.indexOf('geolba') > 0) {uri = rewriteOldURI(uri);}
+                this.uriParameter = uri; 
                 $('#pageContent').empty();
                 let projectId = ws.getProject(uri);
                 let item = config.projectConfiguration[projectId];

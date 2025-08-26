@@ -16,17 +16,17 @@ var config = {
         },
         time: {
             from: 'FROM <https://resource.geosphere.at/thes/time>',
-            image: 'time.png',
+            image: 'time2.png',
             diagram: 'sunburst'
         },
         tect: {
             from: 'FROM <https://resource.geosphere.at/thes/tect>',
-            image: 'tektonik.png',
+            image: 'lithotect.png',
             diagram: 'tree'
         },
         fault: {
             from: 'FROM <https://resource.geosphere.at/thes/fault>',
-            image: 'gold.png',
+            image: 'tektonik.png',
             diagram: 'tree'
         },
         struct: {
@@ -36,7 +36,7 @@ var config = {
         },
         geomorph: {
             from: 'FROM <https://resource.geosphere.at/thes/geomorph>',
-            image: 'quarz.png',
+            image: 'morph.png',
             diagram: 'tree'
         },
         mineral: {
@@ -69,11 +69,10 @@ var config = {
         'GeologicUnit': 'thes/geolunit',
         'structure': 'thes/fault',
         'GeologicTimeScale': 'thes/time',
-        'minres': 'thes/geolunit',
         'minres': 'thes/minres',
         'mineral': 'thes/mineral',
         'tectonicunit': 'thes/tect',
-        'lithology': 'thes/geolunit',
+        'lithology': 'thes/lith',
         'ref': 'thes/citation',
         'http://resource.geolba.ac.at': 'https://resource.geosphere.at'
     },
@@ -123,7 +122,7 @@ WHERE {
         return p;
     },
     checkUri: function (uri) {
-        if (!uri) return uri;
+        if (!uri || uri.indexOf('geosphere') > 0) return uri;
         for (let [key, value] of Object.entries(config.uriReplacements)) {
             uri = uri.replace(key, value);
         }
