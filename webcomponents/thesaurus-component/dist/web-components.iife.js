@@ -56963,7 +56963,7 @@ ${D.shaderPreludeCode.vertexSource}`,
       --text-color: #212529;
       --primary-color: #bfce40;
       --secondary-color: #eeeeee;
-      --map-height: 200px;
+      --map-height: 250px;
       display: flex;
       width: 100%;
       height: auto;
