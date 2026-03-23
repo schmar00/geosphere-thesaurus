@@ -478,7 +478,7 @@ var page = {
 
     $("#data-viewer").append(`
           <data-viewer 
-          lang=”de”
+          lang="${lang.ID}"
           concept-uris=${uri}
           basemap-style="data-viz-white" 
           include-narrower 
