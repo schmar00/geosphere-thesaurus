@@ -71,14 +71,11 @@
   }
   function addColor(node) {
     if (node.itemStyle.color === "") node.itemStyle.color = "#383838";
+    if (node.color === "") node.color = "#383838";
 
-    for (let i = 0; i < node.children.length; i++) {
-      const childnode = node.children[i];
-
-      if (childnode) {
-        for (let i = 0; i < childnode.length; i++) {
-          addColor(childnode[i]);
-        }
+    if (node.children) {
+      for (let i = 0; i < node.children.length; i++) {
+        addColor(node.children[i]);
       }
     }
   }
