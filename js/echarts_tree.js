@@ -15,7 +15,7 @@
   new ResizeObserver(outputsize).observe(chartDom);
 
   data = prepData(rawData);
-  console.log(data);
+
   const option = {
     tooltip: {
       trigger: "item",
