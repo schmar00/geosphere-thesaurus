@@ -460,7 +460,8 @@ var page = {
     let loadDataViewer = false;
     const viableUris = [
       "https://resource.geosphere.at/thes/geolunit/",
-      "https://resource.geosphere.at/thes/tect/",
+      /*deactivated the data viewer for the topic of lithotectonic units. At the moment, the underlying knowledge base has not yet been fully clarified.*/
+      // "https://resource.geosphere.at/thes/tect/",
       "https://resource.geosphere.at/thes/lith/",
       "https://resource.geosphere.at/thes/time/",
       "https://resource.geosphere.at/thes/fault/",
