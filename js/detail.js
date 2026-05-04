@@ -724,7 +724,7 @@ var detail = {
     if (glyphicon == "picture") {
       $("#appsBody2").append(`
                 <div class="apps thumbNail">
-                    <a href="${link}">
+                    <a href="${link}" target="_blank">
                         <img alt="${text1}" src="${this.imgPng(link.replace(".jpg", ".png"))}" class="img-thumbnail" alt="Image" title="Image" onerror="$(this).remove();" style="width:52px; height:52px; overflow:hidden; margin-top:-5px;">
                         <br>Image
                     </a>
@@ -732,7 +732,7 @@ var detail = {
     } else if (glyphicon == "") {
       $("#appsBody2").append(`
                 <div class="apps">
-                    <a href="${link}" class="card-link">
+                    <a href="${link}" class="card-link" target="_blank">
                         ${text1}<br>${text2}
                     </a>
                 </div>`);
@@ -741,7 +741,7 @@ var detail = {
                 <div class="apps">
                     <span class="appsIcon fa fa-${glyphicon} text-info style=""></span>
                     <br>
-                    <a href="${link}" class="card-link">
+                    <a href="${link}" class="card-link" target="_blank">
                         ${text1}<br>${text2}
                     </a>
                 </div>`);
