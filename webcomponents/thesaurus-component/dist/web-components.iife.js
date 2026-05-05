@@ -58754,7 +58754,7 @@ ${k.shaderPreludeCode.vertexSource}`,
       --text-color: #212529;
       --primary-color: #bfce40;
       --secondary-color: #eeeeee;
-      --height: 350px;
+      --height: 400px;
       --shadow-md:
         0 -1px 3px 0px rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1);
       display: flex;
@@ -58867,6 +58867,7 @@ ${k.shaderPreludeCode.vertexSource}`,
       background-color: rgba(0, 0, 0, 0.03);
       padding: 12px 0px;
       border-bottom: 1px solid rgb(238, 238, 238);
+      z-index: 99;
     }
     .card-header{
       margin:0;
