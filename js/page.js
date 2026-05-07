@@ -81,12 +81,12 @@ var page = {
 
       if (urlParams.has("search")) {
         //need lang parameter only for sparql requests
-        search.insertSearch(decodeURI(urlParams.get("search")));
+        search.insertSearch(decodeURI(urlParams.get("search")).replace(/[^a-z\p{L}-]/uig, "").slice(0, 15)); //avoid injection
         this.insertProjCards(); //quick access cards, plus extended project comments from sparql
       } else if (urlParams.has("info")) {
-        this.insertInfo(decodeURI(urlParams.get("info")));
+        this.insertInfo(decodeURI(urlParams.get("info")).replace(/[^a-z]/gi, "")); //avoid injection
         this.insertProjCards(); //quick access cards, plus extended project comments from sparql
-      } else if (urlParams.has("list")) {
+      } /* else if (urlParams.has("list")) {
         $("#pageContent").empty();
         let uri = "§";
         let label = "§";
@@ -97,11 +97,13 @@ var page = {
         }
         search.insertSparql(uri, label);
         this.insertProjCards(); //quick access cards, plus extended project comments from sparql
-      } else if (urlParams.has("uri")) {
+      } */ else if (urlParams.has("uri")) {
+        let raw = urlParams.get("uri");
         let uri = config.checkUri(
-          decodeURI(urlParams.get("uri").replace(/["';><]/gi, "")),
-        ); //avoid injection
-        if (urlParams.get("uri").indexOf("geolba") > 0) {
+          ((raw.slice(0, 35) == 'https://resource.geosphere.at/thes/') ||
+          (raw.slice(0, 29) == 'http://resource.geolba.ac.at/')) ? raw : ''
+        );
+        if (uri.indexOf("geolba") > 0) {
           uri = rewriteOldURI(uri);
         }
         this.uriParameter = uri;

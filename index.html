@@ -27,50 +27,9 @@
     <script src="js/search.js"></script>
     <script src="js/detail.js"></script>
     <script>
-      //test
-      if (
-        typeof page == "undefined" ||
-        window.navigator.userAgent.indexOf("MSIE ") > 0 ||
-        window.navigator.userAgent.indexOf("Trident/") > 0
-      ) {
-        document.execCommand("Stop");
-        document.body = document.createElement("body");
-
-        function gup(name, url) {
-          if (!url) url = location.href;
-          name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-          var regexS = "[\\?&]" + name + "=([^&#]*)";
-          var regex = new RegExp(regexS);
-          var results = regex.exec(url);
-          return results == null ? null : results[1];
-        }
-
-        var html =
-          '<div class="alert alert-dismissible alert-warning">' +
-          '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-          '<h4 class="alert-heading">Thesaurus</h4>' +
-          '<p class="mb-0">[Deutsch]<br>' +
-          "Die Website des Thesaurus wurde f&uuml;r die Browser Firefox, Chrome, Safari oder MS Edge optimiert bzw. modernisiert und unterst&uuml;tzt nicht mehr die Darstellung im MS Internet Explorer 11 oder &auml;lter." +
-          "<br><br>" +
-          "[English]<br>The Thesaurus website is optimized for browsers Firefox, Chrome, Safari or MS Edge. - MS Internet Explorer 11 or older is not supported any more." +
-          "</p></div>";
-
-        let uri = gup("uri", window.location.href);
-        if (uri) {
-          uri = decodeURIComponent(uri);
-          html +=
-            '<a style="margin: 15px;" href="javascript: document.getElementById(\'irdfForm\').submit();" >Download RDF [' +
-            uri +
-            ']</a ><form id="irdfForm" target="_blank" style="display: none; " method="post" action="https://resource.geolba.ac.at/PoolParty/sparql/GeologicTimeScale"><input type="hidden" name="query" id="irdfQuery" value="describe <' +
-            uri +
-            '>" /></form>';
-        }
-        document.body.innerHTML = html;
-      } else {
-        $(document).ready(function () {
-          page.init();
-        });
-      }
+      $(document).ready(function () {
+        page.init();
+      });
     </script>
     <!-- Matomo -->
     <script>
