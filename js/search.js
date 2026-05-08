@@ -19,14 +19,20 @@ var search = {
         }
         query = query.replace('@@from', from);
         ws.projectJson(null, query, "s", jsonData => {
-            for (let binding of jsonData.results.bindings.sort(search.sortFunction)) {
+            ids = Array.from(new Set(jsonData.results.bindings.map(binding => binding.s.value)));
+            a = jsonData.results.bindings.sort((a, b) => {
+                const lenA = a.L?.value?.length || 0;
+                const lenB = b.L?.value?.length || 0;
+                return lenA - lenB;
+            });
+            /* for (let binding of jsonData.results.bindings.sort(search.sortFunction)) {
                 if (ids.indexOf(binding.s.value) >= 0) {
                     continue;
                 }
                 ids.push(binding.s.value);
                 a.push(binding);
-            }
-            //a = [...a, ...jsonData.results.bindings];
+            } */
+
             const options = {
                 shouldSort: true,
                 tokenize: true,
@@ -35,7 +41,7 @@ var search = {
             window.fuse = new Fuse(a, options);
         });
     },
-    sortFunction: function (a, b) {
+    /* sortFunction: function (a, b) {
         const nameA = a.L ? a.L.value.toUpperCase() : ""; // ignore upper and lowercase
         const nameB = b.L ? b.L.value.toUpperCase() : ""; // ignore upper and lowercase
         let al = nameA.length;
@@ -54,7 +60,7 @@ var search = {
 
         // names must be equal
         return 0;
-    },
+    }, */
     insertSparql: function (uri, label) {
         var pageContent = $('#pageContent');
         pageContent.append(`<br>
