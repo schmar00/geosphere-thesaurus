@@ -207,14 +207,16 @@ var search = {
         $('#searchInput').keydown(function (e) {
             switch (e.which) {
                 case 13:
-                    var item = search.__selectSearchLink(1, 1);
-                    if (item) {
-                        var url = item.attr("data_url");
-                        document.location.href = url;
-                        return;
+                    if (searchInput.val().replace(/[^a-z\p{L} -]/uig, "").length > 2) {
+                        var item = search.__selectSearchLink(1, 1);
+                        if (item) {
+                            var url = item.attr("data_url");
+                            document.location.href = url;
+                            return;
+                        }
+                        page.openParaLink('search=' + encodeURI(searchInput.val().replace(/[^a-z\p{L} -]/uig, "")));
+                        $('#dropdown').empty();
                     }
-                    page.openParaLink('search=' + encodeURI(searchInput.val()));
-                    $('#dropdown').empty();
                     searchInput.val('');
                     break;
                 case 38: // up
@@ -227,8 +229,10 @@ var search = {
         });
 
         $('#searchBtn').click(function (e) { //provide search results 
-            page.openParaLink('search=' + encodeURI(searchInput.val()));
-            $('#dropdown').empty();
+            if (searchInput.val().replace(/[^a-z\p{L} -]/uig, "").length > 2) {
+                page.openParaLink('search=' + encodeURI(searchInput.val().replace(/[^a-z\p{L} -]/uig, "")));
+                $('#dropdown').empty();
+            }
             searchInput.val('');
         });
 

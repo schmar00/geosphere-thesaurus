@@ -81,19 +81,21 @@ var page = {
 
       if (urlParams.has("search")) {
         //need lang parameter only for sparql requests
-        search.insertSearch(decodeURI(urlParams.get("search")).replace(/[^a-z\p{L}-]/uig, "").slice(0, 15)); //avoid injection
-        this.insertProjCards(); //quick access cards, plus extended project comments from sparql
+        if (urlParams.get("search").replace(/[^a-z\p{L} -]/uig, "").length > 2) {
+          search.insertSearch(decodeURIComponent(urlParams.get("search")).replace(/[^a-z\p{L} -]/uig, "").slice(0, 15)); //avoid injection
+          this.insertProjCards(); //quick access cards, plus extended project comments from sparql
+        }
       } else if (urlParams.has("info")) {
-        this.insertInfo(decodeURI(urlParams.get("info")).replace(/[^a-z]/gi, "")); //avoid injection
+        this.insertInfo(decodeURIComponent(urlParams.get("info")).replace(/[^a-z]/gi, "")); //avoid injection
         this.insertProjCards(); //quick access cards, plus extended project comments from sparql
       } /* else if (urlParams.has("list")) {
         $("#pageContent").empty();
         let uri = "§";
         let label = "§";
         if (urlParams.has("uri")) {
-          uri = decodeURI(urlParams.get("uri").replace(/["';><]/gi, "")); //avoid injection
+          uri = decodeURIComponent(urlParams.get("uri").replace(/["';><]/gi, "")); //avoid injection
           this.uriParameter = uri;
-          label = decodeURI(urlParams.get("list").replace(/["';><]/gi, "")); //avoid injection
+          label = decodeURIComponent(urlParams.get("list").replace(/["';><]/gi, "")); //avoid injection
         }
         search.insertSparql(uri, label);
         this.insertProjCards(); //quick access cards, plus extended project comments from sparql
