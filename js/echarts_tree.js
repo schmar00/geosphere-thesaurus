@@ -45,7 +45,7 @@
           width: 140,
           color: "#383838",
           formatter: function (params) {
-            return middleTruncate(params.name);
+            return formatLabel(params.name);
           },
         },
 
@@ -78,6 +78,25 @@
         addColor(node.children[i]);
       }
     }
+  }
+
+  /**
+   * @param {string} label
+   * @returns {string}
+   */
+  function formatLabel(label) {
+    label = shortenLabelFormation(label);
+    return middleTruncate(label);
+  }
+
+  /**
+   * @param {string} label
+   * @returns {string}
+   */
+  function shortenLabelFormation(label) {
+    label = label.replaceAll(" Formation", " Fm.");
+    label = label.replaceAll("-Formation", "-Fm.");
+    return label;
   }
 
   function middleTruncate(label) {
