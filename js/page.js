@@ -469,8 +469,8 @@ var page = {
       "https://resource.geosphere.at/thes/lith/",
       "https://resource.geosphere.at/thes/time/",
       "https://resource.geosphere.at/thes/fault/",
-      "https://resource.geosphere.at/thes/minres/",
-      "https://resource.geosphere.at/thes/mineral/",
+      //"https://resource.geosphere.at/thes/minres/",
+      //"https://resource.geosphere.at/thes/mineral/",
     ];
     for (let i = 0; i < viableUris.length; i++) {
       if (uri.includes(viableUris[i])) {
