@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push main to GitLab
-        run: |
-          git remote add gitlab "${{ secrets.GITLAB_REMOTE_URL }}"
-          git push gitlab main
+     # - name: Push main to GitLab
+     #   run: |
+     #     git remote add gitlab "${{ secrets.GITLAB_REMOTE_URL }}"
+     #     git push gitlab main
