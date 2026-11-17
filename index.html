@@ -1,255 +1,182 @@
 ﻿<!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Thesaurus | GeoSphere Austria</title>
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
-    <!-- <link rel="apple-touch-icon" href="img/icon.png" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Thesaurus | GeoSphere Austria</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+  <!-- <link rel="apple-touch-icon" href="img/icon.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="img/icon.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="img/icon.png" /> -->
 
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/FontAwesome/all.min.css" />
-    <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="css/FontAwesome/all.min.css" />
+  <link rel="stylesheet" href="css/site.css" />
 
-    <script src="js/fuse.min.js" charset="utf-8"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/ws.js"></script>
-    <script src="js/lang.js"></script>
-    <script src="js/page.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/detail.js"></script>
-    <script>
-      $(document).ready(function () {
-        page.init();
-      });
-    </script>
-    <!-- Matomo -->
-    <script>
-      var _paq = (window._paq = window._paq || []);
-      //  tracker methods like "setCustomDimension" should be called before "trackPage* View"
-      _paq.push(["trackPageView"]);
-      _paq.push(["enableLinkTracking"]);
-      (function () {
-        var u = "https://webstat.geosphere.at/";
-        _paq.push(["setTrackerUrl", u + "matomo.php"]);
-        _paq.push(["setSiteId", "3"]);
-        var d = document,
-          g = d.createElement("script"),
-          s = d.getElementsByTagName("script")[0];
-        g.async = true;
-        g.src = u + "matomo.js";
-        s.parentNode.insertBefore(g, s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
-    <script
-      src="./webcomponents/thesaurus-component/dist/web-components.iife.js"
-      defer></script>
-  </head>
+  <script src="js/fuse.min.js" charset="utf-8"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/ws.js"></script>
+  <script src="js/lang.js"></script>
+  <script src="js/page.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/detail.js"></script>
+  <script>
+    $(document).ready(function () {
+      page.init();
+    });
+  </script>
+  <!-- Matomo -->
+  <script>
+    var _paq = (window._paq = window._paq || []);
+    //  tracker methods like "setCustomDimension" should be called before "trackPage* View"
+    _paq.push(["trackPageView"]);
+    _paq.push(["enableLinkTracking"]);
+    (function () {
+      var u = "https://webstat.geosphere.at/";
+      _paq.push(["setTrackerUrl", u + "matomo.php"]);
+      _paq.push(["setSiteId", "3"]);
+      var d = document,
+        g = d.createElement("script"),
+        s = d.getElementsByTagName("script")[0];
+      g.async = true;
+      g.src = u + "matomo.js";
+      s.parentNode.insertBefore(g, s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+  <script type="module" src="./webcomponents/thesaurus-component/dist/web-components.js" defer></script>
+</head>
 
-  <body>
-    <!-- Navigation -->
-    <nav
-      id="navBar"
-      class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-      style="opacity: 0.97">
-      <div class="container">
-        <a id="LINK_GBALOGO" href="https://www.geosphere.at"
-          ><img
-            alt="Thesaurus"
-            id="IMG_GBALOGO"
-            src="img/GSA_Logozusammenstellung_Logo_RGB.svg"
-            height="35"
-        /></a>
-        <button
-          id="navbarToggler"
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="javascript:location.replace(page.BASE + '?lang=' + lang.ID);">
-                Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="https://www.youtube.com/playlist?list=PLfshul-4XQW9H-k-_Q98eRI5LHfUPGbtc">
-                <i class="fab fa-youtube" style="color: red"></i> Tutorial
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="https://gis.geosphere.at/thesaurus/info"
-                target="_blank"
-                >About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="https://gis.geosphere.at/thesaurus/faq"
-                target="_blank"
-                >FAQ</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                id="feedback"
-                href="javascript: page.openFeedBack();"
-                >Feedback</a
-              >
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="lang"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >Language</a
-              >
-              <div class="dropdown-menu" aria-labelledby="dropdown05">
-                <a class="dropdown-item" href="javascript: page.setLang('de');"
-                  >Deutsch</a
-                >
-                <a class="dropdown-item" href="javascript: page.setLang('en');"
-                  >English</a
-                >
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Page Content -->
+<body>
+  <!-- Navigation -->
+  <nav id="navBar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="opacity: 0.97">
     <div class="container">
-      <div id="contentRow1" class="row">
-        <div id="pageContent" class="col-lg-8">
-          <!-- Page description -->
-          <div id="page_desc"></div>
-          <hr />
-          <!-- Project descriptions -->
-          <div id="proj_desc"></div>
-          <hr />
-          <!-- other descriptions -->
-          <div id="other_desc"></div>
-          <br />
-        </div>
-        <!-- Sidebar Widgets Column -->
-        <div id="rightSidebar" class="col-lg-4">
-          <!-- Search Widget -->
-          <div id="search_widget" class="card my-4 text-white bg-info mb-3">
-            <div id="searchCard" class="card-body">
-              <i class="fa fa-search"></i>
-              <label for="searchInput" id="searchInputLabel">Suchen</label>
-              <div id="searchGroup" class="input-group">
-                <input
-                  id="searchInput"
-                  type="text"
-                  class="form-control"
-                  placeholder="Search for..." />
-                <div style="position: absolute; top: 39px">
-                  <table id="dropdown" class="table table-hover"></table>
-                </div>
-                <span class="input-group-btn"
-                  ><button
-                    id="searchBtn"
-                    class="btn btn-secondary"
-                    type="button">
-                    Go!
-                  </button></span
-                >
-              </div>
+      <a id="LINK_GBALOGO" href="https://www.geosphere.at"><img alt="Thesaurus" id="IMG_GBALOGO"
+          src="img/GSA_Logozusammenstellung_Logo_RGB.svg" height="35" /></a>
+      <button id="navbarToggler" class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:location.replace(page.BASE + '?lang=' + lang.ID);">
+              Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.youtube.com/playlist?list=PLfshul-4XQW9H-k-_Q98eRI5LHfUPGbtc">
+              <i class="fab fa-youtube" style="color: red"></i> Tutorial
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://gis.geosphere.at/thesaurus/info" target="_blank">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://gis.geosphere.at/thesaurus/faq" target="_blank">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="feedback" href="javascript: page.openFeedBack();">Feedback</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="lang" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Language</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown05">
+              <a class="dropdown-item" href="javascript: page.setLang('de');">Deutsch</a>
+              <a class="dropdown-item" href="javascript: page.setLang('en');">English</a>
             </div>
-          </div>
-          <!-- Apps Card -->
-          <div class="card border-info mb-3" id="appsCard">
-            <div class="card-header">apps</div>
-            <div class="card-body">
-              <div id="appsBody1"></div>
-              <div id="appsBody2"></div>
-            </div>
-          </div>
-          <!-- Side Widgets -->
-          <div id="proj_links"></div>
-          <!-- minimap -->
-          <div id="data-viewer" class="overflow-hidden mb-3"></div>
-          <!-- Video -->
-          <div id="video"></div>
-          <div
-            id="data_viewer"
-            class="card border-info mb-3"
-            style="display: none"></div>
-        </div>
+          </li>
+        </ul>
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container -->
-    <!-- Footer -->
-    <footer id="pageFooter" class="py-5 bg-dark">
-      <div class="container">
-        <div class="m-0 text-center text-white d-flex justify-content-center">
-          &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          &nbsp;
-          <a href="https://www.geosphere.at">GeoSphere Austria</a>&nbsp;|&nbsp;
-          <a
-            id="license"
-            href="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
-            >license</a
-          >&nbsp;|&nbsp;
-          <a id="contact" href="mailto:thesaurus@geosphere.at">contact</a
-          >&nbsp;|&nbsp;
-          <a
-            id="disclaimer"
-            href="javascript:page.openParaLink('info=disclaimer');"
-            >disclaimer</a
-          >&nbsp;|&nbsp;
-          <a
-            href="javascript: window.open('https://wave.webaim.org/report#/' + window.location.href, '_blank');"
-            title="WCAG 2.0 Compatible"
-            >WCAG 2-AA</a
-          >&nbsp;|&nbsp;
-          <a href="https://gis.geosphere.at/thesaurus/faq">FAQ</a>&nbsp;|&nbsp;
-          <a
-            href="https://github.com/schmar00/geosphere-thesaurus"
-            aria-label="GitHub"
-            ><i class="fab fa-github" style="color: white; font-size: 14px"></i
-          ></a>
+  </nav>
+  <!-- Page Content -->
+  <div class="container">
+    <div id="contentRow1" class="row">
+      <div id="pageContent" class="col-lg-8">
+        <!-- Page description -->
+        <div id="page_desc"></div>
+        <hr />
+        <!-- Project descriptions -->
+        <div id="proj_desc"></div>
+        <hr />
+        <!-- other descriptions -->
+        <div id="other_desc"></div>
+        <br />
+      </div>
+      <!-- Sidebar Widgets Column -->
+      <div id="rightSidebar" class="col-lg-4">
+        <!-- Search Widget -->
+        <div id="search_widget" class="card my-4 text-white bg-info mb-3">
+          <div id="searchCard" class="card-body">
+            <i class="fa fa-search"></i>
+            <label for="searchInput" id="searchInputLabel">Suchen</label>
+            <div id="searchGroup" class="input-group">
+              <input id="searchInput" type="text" class="form-control" placeholder="Search for..." />
+              <div style="position: absolute; top: 39px">
+                <table id="dropdown" class="table table-hover"></table>
+              </div>
+              <span class="input-group-btn"><button id="searchBtn" class="btn btn-secondary" type="button">
+                  Go!
+                </button></span>
+            </div>
+          </div>
+        </div>
+        <!-- Apps Card -->
+        <div class="card border-info mb-3" id="appsCard">
+          <div class="card-header">apps</div>
+          <div class="card-body">
+            <div id="appsBody1"></div>
+            <div id="appsBody2"></div>
+          </div>
+        </div>
+        <!-- Side Widgets -->
+        <div id="proj_links"></div>
+        <!-- minimap -->
+        <div id="data-viewer" class="overflow-hidden mb-3"></div>
+        <!-- Video -->
+        <div id="video"></div>
+        <div id="data_viewer" class="card border-info mb-3" style="display: none"></div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+  <!-- Footer -->
+  <footer id="pageFooter" class="py-5 bg-dark">
+    <div class="container">
+      <div class="m-0 text-center text-white d-flex justify-content-center">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        &nbsp;
+        <a href="https://www.geosphere.at">GeoSphere Austria</a>&nbsp;|&nbsp;
+        <a id="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.de">license</a>&nbsp;|&nbsp;
+        <a id="contact" href="mailto:thesaurus@geosphere.at">contact</a>&nbsp;|&nbsp;
+        <a id="disclaimer" href="javascript:page.openParaLink('info=disclaimer');">disclaimer</a>&nbsp;|&nbsp;
+        <a href="javascript: window.open('https://wave.webaim.org/report#/' + window.location.href, '_blank');"
+          title="WCAG 2.0 Compatible">WCAG 2-AA</a>&nbsp;|&nbsp;
+        <a href="https://gis.geosphere.at/thesaurus/faq">FAQ</a>&nbsp;|&nbsp;
+        <a href="https://github.com/schmar00/geosphere-thesaurus" aria-label="GitHub"><i class="fab fa-github"
+            style="color: white; font-size: 14px"></i></a>
 
-          <!--                https://wave.webaim.org/report#/
+        <!--                https://wave.webaim.org/report#/
                     <a style="float:right;" href="https://achecker.ca/checker/index.php?uri=referer&gid=WCAG2-AA" title="WCAG 2.0 Compatible">
                     <img alt="WCAG Checker" src="https://achecker.ca/images/icon_W2_aa.jpg" alt="WCAG 2.0 (Level AA)" height="32" width="102" />
                 </a>-->
-        </div>
-        <div style="display: inline; float: right"></div>
       </div>
-    </footer>
-    <!-- <script type="module" src="js/data-viewer.js"></script> -->
-  </body>
+      <div style="display: inline; float: right"></div>
+    </div>
+  </footer>
+  <!-- <script type="module" src="js/data-viewer.js"></script> -->
+</body>
+
 </html>
