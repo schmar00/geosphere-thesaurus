@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,17 @@
 
     <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css" />
     <link rel="stylesheet" href="css/FontAwesome/all.min.css" />
-
-    <link rel="stylesheet" href="https://visjs.github.io/vis-network/dist/vis-network.min.css" media="screen" charset="utf-8">
+    <!-- 
+    <link rel="stylesheet" href="https://visjs.github.io/vis-network/dist/vis-network.min.css" media="screen"
+        charset="utf-8">
+    <script type="text/javascript" src="https://visjs.github.io/vis-network/dist/vis-network.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" media="screen"
+        charset="utf-8" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 
     <script src="js/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
-    <script type="text/javascript" src="https://visjs.github.io/vis-network/dist/vis-network.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/ws.js"></script>
     <script src="js/visNet.js"></script>
@@ -33,10 +38,10 @@
             background-color: #f8f9fa;
         }
 
-            /* Prevent body scroll when a panel is maximized */
-            body.panel-maximized {
-                overflow: hidden;
-            }
+        /* Prevent body scroll when a panel is maximized */
+        body.panel-maximized {
+            overflow: hidden;
+        }
 
         .site-header {
             background-color: #343a40;
@@ -57,11 +62,13 @@
         }
 
         .panel {
-            position: relative; /* Needed for absolute positioning of the control button */
+            position: relative;
+            /* Needed for absolute positioning of the control button */
             background-color: #ffffff;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            /* Smooth transition for all properties */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -69,23 +76,25 @@
             min-height: 300px;
         }
 
-            .panel:not(.maximized):hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-                cursor: pointer;
-            }
+        .panel:not(.maximized):hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
 
-            /* Styles for the maximized panel */
-            .panel.maximized {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                border-radius: 0;
-                z-index: 1050; /* High z-index to be on top of everything */
-                overflow: auto; /* Allow content to scroll if it overflows */
-            }
+        /* Styles for the maximized panel */
+        .panel.maximized {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border-radius: 0;
+            z-index: 1050;
+            /* High z-index to be on top of everything */
+            overflow: auto;
+            /* Allow content to scroll if it overflows */
+        }
 
         /* Hide other elements when a panel is maximized for a clean view */
         body.panel-maximized .site-header,
@@ -107,11 +116,12 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            z-index: 10; /* Ensure it's above panel content */
+            z-index: 10;
+            /* Ensure it's above panel content */
         }
 
         .btn-toggle-size {
-            background-color: rgba(255,255,255,0.7);
+            background-color: rgba(255, 255, 255, 0.7);
             border: 1px solid #ddd;
             backdrop-filter: blur(2px);
         }
@@ -131,7 +141,8 @@
             left: 0px;
             right: 0px;
             bottom: 24px;
-            overflow: hidden; /* Prevents overflow */
+            overflow: hidden;
+            /* Prevents overflow */
         }
 
         p.lead {
@@ -146,6 +157,7 @@
     </script>
 
 </head>
+
 <body onload="onResize();" onresize="onResize();">
 
     <!-- Header Section -->
@@ -166,15 +178,19 @@
                                 <form class="form-inline">
                                     <div class="form-group">
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="cbHierarchy" toggle="toggle" onchange="this.blur();visNet.clickHierarchy();">
-                                            <label class="custom-control-label" for="cbHierarchy">hierarchy layout</label>
+                                            <input type="checkbox" class="custom-control-input" id="cbHierarchy"
+                                                toggle="toggle" onchange="this.blur();visNet.clickHierarchy();">
+                                            <label class="custom-control-label" for="cbHierarchy">hierarchy
+                                                layout</label>
                                         </div>
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="cbConcepts" checked toggle="toggle" onchange="this.blur();visNet.clickExtConcepts();">
+                                            <input type="checkbox" class="custom-control-input" id="cbConcepts" checked
+                                                toggle="toggle" onchange="this.blur();visNet.clickExtConcepts();">
                                             <label class="custom-control-label" for="cbConcepts">Linked Data</label>
                                         </div>
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="cbColorize" toggle="toggle" onchange="this.blur();visNet.clickColorize();">
+                                            <input type="checkbox" class="custom-control-input" id="cbColorize"
+                                                toggle="toggle" onchange="this.blur();visNet.clickColorize();">
                                             <label class="custom-control-label" for="cbColorize">web color</label>
                                         </div>
                                     </div>
@@ -186,7 +202,9 @@
 
                         </div>
                         <div id="mynetworkProgressCont" class="progress" style="height:5px;">
-                            <div id="mynetworkProgress" class="progress-bar bg-primary" role="progressbar" style="width:5%; height:5px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="mynetworkProgress" class="progress-bar bg-primary" role="progressbar"
+                                style="width:5%; height:5px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -202,8 +220,10 @@
                 </div>
                 <div id="clusterPanel" class="col-12 col-md-6 col-lg-6 mb-2 p-0">
                     <div class="panel p-0 text-center">
-                        <h5 id="stackContent" style="position:absolute; top: 0px; left:0px; right:0px; bottom:0px;"></h5>
-                        <div id="d3cluster" style="position:absolute; top: 30px; left:0px; right:0px; bottom:0px;" class="overflow-auto">
+                        <h5 id="stackContent" style="position:absolute; top: 0px; left:0px; right:0px; bottom:0px;">
+                        </h5>
+                        <div id="d3cluster" style="position:absolute; top: 30px; left:0px; right:0px; bottom:0px;"
+                            class="overflow-auto">
                         </div>
                     </div>
                 </div>
@@ -283,4 +303,5 @@
     </script>
 
 </body>
+
 </html>
